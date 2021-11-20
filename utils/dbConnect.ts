@@ -5,10 +5,17 @@ const connectDB = () => {
         console.log("Already connected");
         return;
     }
-    mongoose.connect("", (err) => {
-        if (err) throw err;
-        console.log("DataBase is connected");
-    });
+    mongoose.connect(
+        "",
+        {
+            useNewUrlParser: true,
+            useUnifiedTopology: true,
+        } as mongoose.ConnectOptions,
+        (err) => {
+            if (err) throw err;
+            console.log("DataBase is connected");
+        }
+    );
 };
 
 export default connectDB;
