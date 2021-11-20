@@ -1,8 +1,8 @@
 import bcrypt from "bcryptjs";
 
 const verifyPassword = async (
-    password: string,
-    newPassword: string
+    password: string | any,
+    newPassword: string | any
 ): Promise<boolean> => {
     const verify = await bcrypt.compare(password, newPassword);
     return verify;

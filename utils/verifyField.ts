@@ -1,15 +1,15 @@
 interface data {
     email: string;
     password: string;
-    confirmPassword: string;
-    name: string;
+    confirmPassword?: string;
+    name?: string;
 }
 
-const verify = ({ name, email, password, confirmPassword }: data) => {
+const verify = ({ email, password, confirmPassword, name }: data) => {
     if (!name || !password || !email || !confirmPassword)
         return "Fill all the required Field";
     if (password.length < 6) return "Enter strong Password";
-    if (emailVerify(email)) return "Email is not valid";
+    if (!emailVerify(email)) return "Email is not valid";
     if (password !== confirmPassword) return "Password doesn't match";
 };
 

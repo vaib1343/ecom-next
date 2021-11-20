@@ -1,7 +1,10 @@
-import React, { FC } from 'react';
+import React, { FC, useEffect } from 'react';
 import Link from 'next/link'
 
 const RegisterCard: FC = () => {
+    useEffect(() => {
+
+    }, [])
     return <>
         <div className="loginContainer">
             <div className="loginCard w-50">
@@ -23,7 +26,7 @@ const RegisterCard: FC = () => {
                 </div>
                 <div className="input-container">
                     <label htmlFor="confirmPassword">
-                       Confirm Password
+                        Confirm Password
                     </label>
                     <input name="confirmPassword" type="password" placeholder="******" id="confirmPassword" />
                 </div>

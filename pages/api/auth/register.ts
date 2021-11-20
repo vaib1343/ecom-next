@@ -24,14 +24,15 @@ const Register = async (req: NextApiRequest, res: NextApiResponse) => {
         const valid = verify({ email, password, confirmPassword, name });
         if (valid) throw new Error(valid);
 
-        const hashPassword = generatePassword(password);
-        const user = new User({
+        const hashPassword = await generatePassword(password);
+        console.log("password",hashPassword)
+        const newUser = new User({
             name,
             email,
             password: hashPassword,
             role,
         });
-        await user.save();
+        await newUser.save();
         __success(res, {}, "User registered SuccessFully");
     } catch (error) {
         __error(res, error);
