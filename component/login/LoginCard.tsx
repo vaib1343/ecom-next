@@ -1,6 +1,7 @@
 import React, { FC } from 'react';
 import Image from 'next/image'
 import Link from 'next/link'
+import Button from '../common/Button';
 const LoginCard: FC = () => {
     return <>
         <div className="loginContainer">
@@ -19,7 +20,7 @@ const LoginCard: FC = () => {
                     <input name="password" type="password" placeholder="******" id="password" />
                 </div>
                 <div className="d-flex justify-content-center ">
-                    <button className="bg-gradient primary m-3">Login</button>
+                    <Button primary={true} text="Login" customClass="m-3" />
                 </div>
                 <div className="d-flex justify-content-center"><Link href="/register"><a>Dont have account?</a></Link></div>
             </div>
