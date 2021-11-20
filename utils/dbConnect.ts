@@ -6,7 +6,7 @@ const connectDB = () => {
         return;
     }
     mongoose.connect(
-        "",
+        "mongodb+srv://vaib:1234@cluster0.wo4b8.mongodb.net/myFirstDatabase?retryWrites=true&w=majority",
         {
             useNewUrlParser: true,
             useUnifiedTopology: true,
