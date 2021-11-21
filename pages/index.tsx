@@ -9,6 +9,9 @@ import ProductList from '../component/product/ProductList'
 export default function Home() {
   return (
     <>
+      <Head>
+        <title>Ecom site</title>
+      </Head>
       <Navbar />
       {/* <Login /> */}
       <ProductList />

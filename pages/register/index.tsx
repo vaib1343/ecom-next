@@ -1,8 +1,12 @@
 import React from "react";
 import { HomeIcon } from "../../component/common/HomeIcon";
 import { RegisterCard } from "../../component/register/RegisterCard";
+import Head from "next/head";
 const Register = () => {
     return <>
+        <Head>
+            <title>Register</title>
+        </Head>
         <HomeIcon />
         <RegisterCard />
     </>

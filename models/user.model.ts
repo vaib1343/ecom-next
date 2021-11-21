@@ -13,6 +13,7 @@ const userSchema = new mongoose.Schema({
     password: {
         type: String,
         required: true,
+        default: "user",
     },
     role: {
         type: String,
@@ -24,5 +25,5 @@ const userSchema = new mongoose.Schema({
             "https://res.cloudinary.com/devatchannel/image/upload/v1602752402/avatar/avatar_cugq40.png",
     },
 });
-
-export default mongoose.model("User", userSchema);
+const dataSet = mongoose.models.User || mongoose.model("User", userSchema);
+export default dataSet;
