@@ -96,6 +96,13 @@ a {
     color: rgb(121, 117, 117);
 }
 
+.error-text {
+    color: rgb(148, 7, 7);
+    font-size: 0.7rem;
+    margin-top: 0px;
+    margin-bottom: 0.3rem;
+}
+
 .loginCard {
     border: 0px solid transparent;
     border-radius: 10px;
@@ -161,11 +168,11 @@ img {
     width: 100%;
 }
 
-.bg-red{
+.bg-red {
     background-color: rgb(116, 49, 49);
 }
 
-.bg-green{
+.bg-green {
     background-color: rgb(67, 94, 67);
 }
 
@@ -175,7 +182,7 @@ img {
 }
 
 .card-container {
-    margin: .7px;
+    margin: 0.7px;
 }
 .quantity {
     font-size: 1.1rem;
@@ -183,5 +190,5 @@ img {
 .title-container {
     display: flex;
     justify-content: space-between;
-    padding: .5rem 2rem;
+    padding: 0.5rem 2rem;
 }
