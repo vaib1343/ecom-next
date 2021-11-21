@@ -10,7 +10,8 @@ export default function Home() {
   return (
     <>
       <Navbar />
-      <ProductList/>
+      {/* <Login /> */}
+      <ProductList />
     </>
   )
 }
