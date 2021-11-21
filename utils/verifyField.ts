@@ -13,7 +13,7 @@ const verify = ({ email, password, confirmPassword, name }: data) => {
     if (password !== confirmPassword) return "Password doesn't match";
 };
 
-const emailVerify = (email) => {
+const emailVerify = (email: string) => {
     const re =
         /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
     return re.test(email);

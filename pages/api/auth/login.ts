@@ -1,9 +1,9 @@
+import User from "../../../models/user.model";
 import connectDB from "../../../utils/dbConnect";
 import { NextApiRequest, NextApiResponse } from "next";
 import { __error, __success } from "../../../utils/resHandler";
-import User from "../../../models/user.model";
-import { verify } from "../../../utils/verifyField";
 import { verifyPassword } from "../../../utils/passwordVerify";
+import { tokenGenerator } from "../../../utils/tokenHelper";
 
 connectDB();
 
@@ -17,14 +17,20 @@ export default function handler(req: NextApiRequest, res: NextApiResponse) {
 const Login = async (req: NextApiRequest, res: NextApiResponse) => {
     try {
         const { email, password } = req.body;
-        const valid = verify({ email, password });
-        if (valid) throw new Error(valid);
 
-        const userCheck = await User.find({ email });
-        if (!userCheck) throw new Error("User not found");
+        if (!email || !password) throw new Error("All fields are required");
 
-        __success(res, { email, password });
+        const userExist = await User.findOne({ email });
+        if (!userExist) throw new Error("Wrong credentials");
+
+        const verifyPass = await verifyPassword(password, userExist.password);
+        if (!verifyPass) throw new Error("Wrong credentials");
+
+        const token = tokenGenerator({ ...userExist });
+        console.log("token ", token);
+        __success(res, { token ,...userExist}, "Successfully logged in");
     } catch (error) {
+        console.log("error", error);
         __error(res, error);
     }
 };
