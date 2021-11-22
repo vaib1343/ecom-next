@@ -1,8 +1,11 @@
 import React, { FC } from 'react';
 import Image from 'next/image'
 import Link from 'next/link'
-import Button from '../common/Button';
 import { useForm } from 'react-hook-form';
+import { login } from '../../redux/slice/user.slice'
+import { useAppDispatch } from '../../redux/hooks';
+import { useDispatch } from 'react-redux';
+import { useRouter } from 'next/router';
 
 type formData = {
     email: String;
@@ -11,9 +14,13 @@ type formData = {
 
 const LoginCard: FC = () => {
     const { handleSubmit, watch, formState: { errors }, register } = useForm<formData>();
+    const dispatch = useDispatch();
+    const router = useRouter()
 
-    const onSubmit = (data) => {
-        console.log("data 800", data)
+    const onSubmit = async (data) => {
+        // const user = await dispatch(login(data));
+        console.log("user response ", user)
+
     }
     return <>
         <div className="loginContainer">

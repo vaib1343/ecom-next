@@ -1,2 +1,7 @@
 const AUTH = "AUTH";
-export { AUTH };
+const Status = {
+    PENDING: "PENDING",
+    REJECTED: "REJECTED",
+    FULFILLED: "FULFILLED",
+};
+export { AUTH, Status };

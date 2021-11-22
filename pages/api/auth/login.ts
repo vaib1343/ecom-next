@@ -31,6 +31,6 @@ const Login = async (req: NextApiRequest, res: NextApiResponse) => {
         __success(res, { token, ...userExist._doc }, "Successfully logged in");
     } catch (error) {
         console.log("error", error);
-        __error(res, error);
+        __error(res, error, 401);
     }
 };

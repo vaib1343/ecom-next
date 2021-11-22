@@ -1,7 +1,9 @@
 import React, { FC, useEffect } from 'react';
 import Link from 'next/link'
 import { useForm } from 'react-hook-form';
-
+import { useDispatch } from 'react-redux';
+import { useAppDispatch } from '../../redux/hooks';
+import { register as registerThunk } from '../../redux/slice/user.slice'
 interface formData {
     name: String,
     email: String,
@@ -10,9 +12,10 @@ interface formData {
 }
 
 const RegisterCard: FC = () => {
-    const { register, formState: { errors }, handleSubmit, watch } = useForm<formData>()
+    const { register, formState: { errors }, handleSubmit, watch } = useForm<formData>();
+    const dispatch = useDispatch()
     const onSubmit = (data) => {
-        console.log("data", data)
+        // dispatch((registerThunk(data)))
     }
     useEffect(() => {
 
