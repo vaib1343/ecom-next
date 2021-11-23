@@ -5,8 +5,9 @@ import { Navbar } from '../component/common/Navbar'
 import Login from './login'
 import ProductCard from '../component/product/ProductCard'
 import ProductList from '../component/product/ProductList'
+import WithProtect from '../component/common/WithProtect'
 
-export default function Home() {
+function Home() {
   return (
     <>
       <Head>
@@ -18,3 +19,5 @@ export default function Home() {
     </>
   )
 }
+export default WithProtect(Home);
+

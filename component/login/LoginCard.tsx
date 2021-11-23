@@ -18,9 +18,10 @@ const LoginCard: FC = () => {
     const router = useRouter()
 
     const onSubmit = async (data) => {
-        // const user = await dispatch(login(data));
-        // console.log("user response ", user)
-
+        const user = await dispatch(login(data));
+        if (!user.hasOwnProperty('error')) {
+            router.push('/')
+        }
     }
     return <>
         <div className="loginContainer">

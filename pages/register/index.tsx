@@ -2,6 +2,8 @@ import React from "react";
 import { HomeIcon } from "../../component/common/HomeIcon";
 import { RegisterCard } from "../../component/register/RegisterCard";
 import Head from "next/head";
+import WithAuth from '../../component/common/WithAuth';
+
 const Register = () => {
     return <>
         <Head>
@@ -14,4 +16,4 @@ const Register = () => {
 
 
 
-export default Register
+export default WithAuth(Register)

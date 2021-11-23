@@ -4,6 +4,7 @@ import { useForm } from 'react-hook-form';
 import { useDispatch } from 'react-redux';
 import { useAppDispatch } from '../../redux/hooks';
 import { register as registerThunk } from '../../redux/slice/user.slice'
+import { useRouter } from 'next/router';
 interface formData {
     name: String,
     email: String,
@@ -13,9 +14,14 @@ interface formData {
 
 const RegisterCard: FC = () => {
     const { register, formState: { errors }, handleSubmit, watch } = useForm<formData>();
-    const dispatch = useDispatch()
-    const onSubmit = (data) => {
-        // dispatch((registerThunk(data)))
+    const dispatch = useDispatch();
+    const router = useRouter()
+    const onSubmit = async (data) => {
+        const userRes = await dispatch((registerThunk({ ...data, role: "user" })));
+        console.log("user Res", userRes);
+        if (!userRes.hasOwnProperty('error')) {
+            router.push('/login')
+        }
     }
     useEffect(() => {
 

@@ -1,15 +1,18 @@
 import { AsyncThunk, createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
+import { setToken } from "../../utils/tokenHelper";
 import { Status } from "../constant";
-
-const verifyToken = createAsyncThunk(
+export const verifyToken = createAsyncThunk(
     "user/fetchUser",
     async (payload, thunkApi) => {
         try {
-            const resposne = await axios.get("/api/auth/");
+            const resposne = await axios.post("/api/auth/accesstoken", {
+                token: payload,
+            });
+            return resposne.data.data;
         } catch (error) {
             console.log(error);
-            thunkApi.rejectWithValue("error");
+            return thunkApi.rejectWithValue(error);
         }
     }
 );
@@ -17,17 +20,27 @@ const verifyToken = createAsyncThunk(
 export const login = createAsyncThunk(
     "user/login",
     async (payload, thunkApi) => {
-        const user = await axios.post("api/auth/login", payload);
-        console.log("data", user.data);
-        return user.data;
+        try {
+            const user = await axios.post("api/auth/login", payload);
+            setToken(user.data.data.token);
+            return user.data.data;
+        } catch (error) {
+            console.log(error);
+            return thunkApi.rejectWithValue(error);
+        }
     }
 );
 
 export const register = createAsyncThunk(
     "user/register",
     async (payload, thunkApi) => {
-        const user = await axios.post("api/auth/register", payload);
-        return user.data;
+        try {
+            const user = await axios.post("api/auth/register", payload);
+            return user.data.data;
+        } catch (error) {
+            console.log(error);
+            return thunkApi.rejectWithValue(error);
+        }
     }
 );
 
@@ -47,6 +60,16 @@ export const userSlice = createSlice({
             state.status = Status.FULFILLED;
         });
         builder.addCase(login.rejected, (state) => {
+            state.status = Status.REJECTED;
+        });
+        builder.addCase(verifyToken.pending, (state) => {
+            state.status = Status.PENDING;
+        });
+        builder.addCase(verifyToken.fulfilled, (state, action) => {
+            state.status = Status.FULFILLED;
+            state.data = action.payload;
+        });
+        builder.addCase(verifyToken.rejected, (state) => {
             state.status = Status.REJECTED;
         });
     },

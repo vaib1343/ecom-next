@@ -5,7 +5,7 @@ const ProductList = () => {
     return <>
         <div className="d-flex m-5" style={{ flexWrap: 'wrap',justifyContent:"space-around",alignItems:'center' }}>
             {
-                arr.map(value => <><ProductCard key={value} /></>)
+                arr.map(value => <><ProductCard values={value} key={value} /></>)
             }
 
         </div>

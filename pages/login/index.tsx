@@ -2,6 +2,7 @@ import React from 'react'
 import { HomeIcon } from '../../component/common/HomeIcon';
 import { LoginCard } from '../../component/login/LoginCard';
 import Head from 'next/head';
+import WithAuth from '../../component/common/WithAuth';
 const Login = () => {
     return <>
         <Head>
@@ -10,4 +11,4 @@ const Login = () => {
         <HomeIcon />
         <LoginCard /></>
 };
-export default Login
+export default WithAuth(Login)

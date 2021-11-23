@@ -1,8 +1,8 @@
 import React from 'react';
 import Button from '../common/Button';
-const ProductCard = () => {
+const ProductCard = ({ values }) => {
     return <>
-        <div className="d-flex align-items justify-content-center border-1 m-3">
+        <div className="d-flex align-items justify-content-center border-1 m-3" key={values}>
             <div className="card-container">
                 <div className="product-card-header">
                     <div className="product-image">

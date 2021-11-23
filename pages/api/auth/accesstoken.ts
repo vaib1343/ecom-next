@@ -15,8 +15,9 @@ export default async function handler(
 const accessToken = async (req: NextApiRequest, res: NextApiResponse) => {
     try {
         const { token } = req.body;
-        const verify = verifyToken(token);
-        __success(res, {});
+        const verifyUser = verifyToken(token);
+        console.log("value in token", verifyUser);
+        __success(res, verifyUser);
     } catch (error) {
         __error(res, error);
     }
