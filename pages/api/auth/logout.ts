@@ -1,5 +1,5 @@
 import { NextApiRequest, NextApiResponse } from "next";
-import { __error } from "../../../utils/resHandler";
+import { __error, __success } from "../../../utils/resHandler";
 
 export default async function handler(
     req: NextApiRequest,
@@ -13,7 +13,7 @@ export default async function handler(
 
 const logout = async (req: NextApiRequest, res: NextApiResponse) => {
     try {
-        
+        __success(res, {}, "Successfully logged out");
     } catch (error) {
         console.log(error);
         __error(res, error);

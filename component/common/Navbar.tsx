@@ -2,14 +2,25 @@ import React, { FC } from 'react'
 import styles from '../../styles/navbar.module.css'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faSignInAlt, faSignOutAlt, faHome, faUserPlus } from '@fortawesome/free-solid-svg-icons';
-import { useRouter } from 'next/router';
+import router, { useRouter } from 'next/router';
 import Link from 'next/link'
-import { useAppSelector } from '../../redux/hooks';
+import { useAppDispatch, useAppSelector } from '../../redux/hooks';
 import { RootState } from '../../redux/store';
+import { logout } from '../../redux/slice/user.slice';
+import { useDispatch } from 'react-redux';
 const Navbar: FC = () => {
     const { data, status } = useAppSelector((state: RootState) => state.user);
+    const dispatch = useDispatch()
     const handleLogout = async () => {
-        
+        try {
+            const res = await dispatch(logout())
+            if (!res.hasOwnProperty('error')) {
+                router.push('/login')
+            }
+
+        } catch (error) {
+            console.log(error)
+        }
     }
     const getLoggedInLink = () => {
         return <>
