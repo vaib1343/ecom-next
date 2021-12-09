@@ -10,7 +10,7 @@ const Register = () => {
             <title>Register</title>
         </Head>
         <HomeIcon />
-        <RegisterCard />
+        <RegisterCard role="user" />
     </>
 };
 

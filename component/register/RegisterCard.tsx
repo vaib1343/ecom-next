@@ -12,12 +12,16 @@ interface formData {
     confirmPassword: String
 }
 
-const RegisterCard: FC = () => {
+interface RegisterCardProps {
+    role: string
+}
+
+const RegisterCard: FC<RegisterCardProps> = ({ role }) => {
     const { register, formState: { errors }, handleSubmit, watch } = useForm<formData>();
     const dispatch = useDispatch();
     const router = useRouter()
     const onSubmit = async (data) => {
-        const userRes = await dispatch((registerThunk({ ...data, role: "user" })));
+        const userRes = await dispatch((registerThunk({ ...data, role })));
         console.log("user Res", userRes);
         if (!userRes.hasOwnProperty('error')) {
             router.push('/login')
